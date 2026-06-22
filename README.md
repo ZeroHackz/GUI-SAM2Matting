@@ -130,8 +130,8 @@ We are inspired by the following excellent works: [SAM2](https://github.com/face
 If you find SAM2Matting useful in your research, please consider citing:
 
 ```bibtex
-@inproceedings{shen2026sam2matting,
-  title={SAM2Matting: Generalized Image and Video Matting},
+@inproceedings{SAM2Matting,
+  title={{SAM2Matting}: Generalized Image and Video Matting},
   author={Shen, Ruiqi and Jie, Guangquan and Liu, Chang and Ding, Henghui},
   booktitle={European Conference on Computer Vision (ECCV)},
   year={2026}
