@@ -136,3 +136,6 @@ If you find SAM2Matting useful in your research, please consider citing:
   booktitle={European Conference on Computer Vision (ECCV)},
   year={2026}
 }
+```
+## ⚖️ License
+SAM2Matting is licensed under CC BY-NC-SA 4.0 for non-commercial research use only. For uses beyond this license, please contact henghui.ding[AT]gmail.com.
