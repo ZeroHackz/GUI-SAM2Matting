@@ -3,9 +3,9 @@ SAM2Matting: Generalized Image and Video Matting
 </h1>
 
 <p align="center">
-  <strong>Ruiqi Shen</strong><sup style="font-size: 0.7em;">1</sup>
+  <strong>Ruiqi Shen</strong><sup style="font-size: 0.7em;">*1</sup>
   ·
-  <strong>Guangquan Jie</strong><sup style="font-size: 0.7em;">1</sup>
+  <strong>Guangquan Jie</strong><sup style="font-size: 0.7em;">*1</sup>
   .
   <a href="https://scholar.google.com/citations?user=XlQP0GIAAAAJ&hl=zh-CN"><strong>Chang Liu</strong></a><sup style="font-size: 0.7em;">2✉️</sup>
   ·
