@@ -657,7 +657,8 @@ class SAM2VideoPredictor(SAM2MattingBase):
             
         hight_features = backbone_fpn["backbone_fpn"]
         mask_inputs = (pred_masks_gpu > 0).to(dtype=torch.float16)
-        img = inference_state["images"][frame_idx].unsqueeze(0)
+        # local patch: frames live on CPU when offload_video_to_cpu=True
+        img = inference_state["images"][frame_idx].unsqueeze(0).to(inference_state["device"], non_blocking=True)
 
         alpha, alpha_upscaled, unknown_region = self._forward_alpha_heads(
             mask_inputs=mask_inputs,
