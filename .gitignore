@@ -1,0 +1,15 @@
+# secrets - never commit
+.env*
+
+# local environment & models
+venv/
+checkpoints/
+*.onnx
+
+# local additions & outputs
+output_image/
+output_video/
+*_matting/
+requirements-notorch.txt
+__pycache__/
+*.pyc
