@@ -56,6 +56,12 @@ if (-not (Test-Path $checkpoint)) {
     if ((Get-Item $checkpoint).Length -lt 100MB) { Write-Host 'Download looks incomplete - check your connection.'; Exit-Launcher 1 }
 }
 
+# --setup-only: build.bat uses this to ensure the venv exists, nothing else.
+if ($MattingArgs -and $MattingArgs[0] -eq '--setup-only') {
+    Write-Host 'Environment ready.'
+    exit 0
+}
+
 # No args -> GUI (detached, no console). With args -> CLI batch run.
 if (-not $MattingArgs) {
     Write-Host 'Opening SAM2Matting GUI...'

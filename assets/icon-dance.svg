@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- SAM2Matting GUI - dancing figure icon -->
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="#181826"/>
+
+  <!-- transparency checkerboard accent, top-left corner -->
+  <g fill="#2a2a40">
+    <rect x="34" y="34" width="22" height="22" rx="5"/>
+    <rect x="56" y="56" width="22" height="22" rx="5"/>
+    <rect x="78" y="34" width="22" height="22" rx="5"/>
+    <rect x="34" y="78" width="22" height="22" rx="5"/>
+  </g>
+
+  <!-- motion arcs -->
+  <path d="M 56 190 A 96 96 0 0 1 42 132" stroke="#e93a8c" stroke-width="12"
+        stroke-linecap="round" fill="none"/>
+  <path d="M 204 128 A 96 96 0 0 1 218 180" stroke="#28d4c4" stroke-width="12"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- dancer: disco point-up pose -->
+  <g stroke="#ffffff" stroke-width="21" stroke-linecap="round" fill="none">
+    <!-- arm pointing up-right -->
+    <path d="M 126 98 L 160 72 L 194 44"/>
+    <!-- arm down-left -->
+    <path d="M 126 98 L 96 126 L 70 118"/>
+    <!-- torso, hip swayed left -->
+    <path d="M 128 94 C 126 120 120 138 116 156"/>
+    <!-- planted leg -->
+    <path d="M 116 156 L 106 186 L 100 218"/>
+    <!-- kicked leg, knee bent -->
+    <path d="M 116 156 L 156 172 L 164 210"/>
+  </g>
+  <!-- head, clear of the raised arm -->
+  <circle cx="116" cy="52" r="23" fill="#ffffff"/>
+</svg>

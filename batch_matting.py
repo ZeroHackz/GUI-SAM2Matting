@@ -25,12 +25,20 @@ import tempfile
 import time
 from pathlib import Path
 
+# Embedded python (portable build) has no stdlib source files, which breaks
+# torch.jit's inspect.getsource — run the (functionally identical) eager path.
+if next(Path(sys.executable).parent.glob("python3*._pth"), None):
+    os.environ.setdefault("PYTORCH_JIT", "0")
+
 import numpy as np
 import torch
 from PIL import Image
 
 REPO_ROOT = Path(__file__).resolve().parent
 os.chdir(REPO_ROOT)  # hydra config paths in build_sam are repo-relative
+# embedded python (portable build) does not put the script dir on sys.path
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 def log(msg: str):
     print(msg, flush=True)

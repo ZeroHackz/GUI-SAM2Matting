@@ -1,4 +1,4 @@
-# SAM2Matting GUI
+# <img src="assets/icon-dance.svg" width="40" alt="icon"> SAM2Matting GUI
 
 This project is a fork of the original [SAM2Matting by FudanCVL](https://github.com/FudanCVL/SAM2Matting) (Ruiqi Shen, Guangquan Jie, Chang Liu, Henghui Ding — Fudan University). Huge thanks to the authors for creating this excellent matting framework! Check out their [project page](https://henghuiding.com/SAM2Matting/), the [paper on arXiv](https://arxiv.org/abs/2606.27339), and the [model checkpoints on Hugging Face](https://huggingface.co/FudanCVL/SAM2Matting).
 
@@ -36,6 +36,19 @@ This fork includes the full original model code, plus:
 
 ## 💻 How to Use (Easy Way)
 
+Requirements: Windows 10/11 and an NVIDIA GPU (CUDA). No Python installation needed.
+
+1.  Go to the [**Releases**](https://github.com/ZeroHackz/GUI-SAM2Matting/releases) page.
+2.  Download the latest `SAM2MattingPortableGUI.exe` and put it in an empty folder (it sets up next to itself).
+3.  Run it. On **first run** it downloads its own Python and dependencies (~3.5 GB, one time) right next to the exe — watch the log. Model checkpoints are **not** bundled either; the selected model (default ~380 MB) downloads automatically on your first matting run.
+4.  Click **Folder...** (frame directory) or **File...** (video or image) to pick your input.
+5.  Optionally pick a model variant, composite background color, or output folder.
+6.  Click **Run matting** and watch the log. When it finishes, **Open output folder** takes you straight to the results.
+
+Everything stays inside the exe's folder — delete the folder and the app is gone.
+
+## 🛠️ From Source (Developers)
+
 Requirements: Windows, an NVIDIA GPU (CUDA), [Python 3.10](https://www.python.org/downloads/), and [PowerShell 7](https://github.com/PowerShell/PowerShell).
 
 1.  Clone this repository:
@@ -43,9 +56,7 @@ Requirements: Windows, an NVIDIA GPU (CUDA), [Python 3.10](https://www.python.or
     git clone https://github.com/ZeroHackz/GUI-SAM2Matting.git
     ```
 2.  Double-click **`run_matting.bat`**. The first run builds the environment (the PyTorch download is ~3 GB) and fetches the default checkpoint, then the GUI opens.
-3.  Click **Folder...** (frame directory) or **File...** (video or image) to pick your input.
-4.  Optionally pick a model variant, composite background color, or output folder.
-5.  Click **Run matting** and watch the log. When it finishes, **Open output folder** takes you straight to the results.
+3.  To build the portable executable yourself, run **`build.bat`** — the exe lands in the `dist` folder.
 
 ## CLI Usage
 

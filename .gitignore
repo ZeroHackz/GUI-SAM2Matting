@@ -13,3 +13,9 @@ output_video/
 requirements-notorch.txt
 __pycache__/
 *.pyc
+
+# portable build artifacts
+build/
+dist/
+python_embedded/
+python_embed.zip
