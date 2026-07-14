@@ -1,131 +1,72 @@
-<h1 align="center">
-SAM2Matting: Generalized Image and Video Matting
-</h1>
+# SAM2Matting GUI
 
-<p align="center">
-  <strong>Ruiqi Shen</strong><sup style="font-size: 0.7em;">*1</sup>
-  ·
-  <strong>Guangquan Jie</strong><sup style="font-size: 0.7em;">*1</sup>
-  .
-  <a href="https://scholar.google.com/citations?user=XlQP0GIAAAAJ&hl=zh-CN"><strong>Chang Liu</strong></a><sup style="font-size: 0.7em;">2✉️</sup>
-  ·
-  <a href="https://henghuiding.com/"><strong>Henghui Ding</strong></a><sup style="font-size: 0.7em;">1✉️</sup>
-</p>
+This project is a fork of the original [SAM2Matting by FudanCVL](https://github.com/FudanCVL/SAM2Matting) (Ruiqi Shen, Guangquan Jie, Chang Liu, Henghui Ding — Fudan University). Huge thanks to the authors for creating this excellent matting framework! Check out their [project page](https://henghuiding.com/SAM2Matting/), the [paper on arXiv](https://arxiv.org/abs/2606.27339), and the [model checkpoints on Hugging Face](https://huggingface.co/FudanCVL/SAM2Matting).
 
-<p align="center">
-  <sup>1</sup>Fudan University &nbsp;&nbsp;
-  <sup>2</sup>Shanghai University of Finance and Economics  &nbsp;
-</p>
+This version focuses on providing a user-friendly **Graphical User Interface (GUI)** and a **batch pipeline** for Windows users — point it at a folder of frames, a video, or a single image and get clean alpha mattes with no command line and no manual mask drawing.
 
-<p align="center">
-  <a href="https://henghuiding.com/SAM2Matting/"><img src="https://img.shields.io/badge/Project-Page-2563eb?style=flat&logo=github&logoColor=white" alt="Project Page"></a>
-  <a href="https://arxiv.org/abs/2606.27339"><img src="https://img.shields.io/badge/arXiv-2606.27339-b31b1b?style=flat&logo=arxiv&logoColor=white" alt="arXiv"></a>
-  <a href="https://huggingface.co/FudanCVL/SAM2Matting"><img src="https://img.shields.io/badge/Models-Hugging%20Face-ffd21e?style=flat&logo=huggingface&logoColor=white" alt="Hugging Face Models"></a>
-</p>
+The original documentation is preserved in [SAM2Matting-README.md](SAM2Matting-README.md).
 
-<p align="center">
-  <strong>SAM2Matting</strong> is a generalized matting framework that decouples high-level tracking from dedicated low-level matting.
-  It supports <strong>diverse prompts</strong> for robust image & video matting of any <strong>open-world targets.</strong>
-</p>
+### Screenshot
 
-<p align="center" style="margin-bottom:0.5em;">
-  <img src="assets/teaser.png" width="90%" alt="SAM2Matting qualitative results on fast motion and non-human targets"/>
-</p>
+*Pick an input, choose a model, and follow the run live with a progress bar and full log.*
 
-<p align="center" style="margin-top:0.4em; margin-bottom:1em;">
-  🎥 For more visual results, slider comparisons, and demo, visit our
-  <a href="https://henghuiding.com/SAM2Matting"><b>project page</b></a>.
-</p>
+![SAM2Matting GUI](screenshots/screenshot-gui.png)
 
-<!-- --- -->
+## ✨ Features
 
-## ✨ Highlights
+This fork includes the full original model code, plus:
 
-- **Decoupled design** — VOS tracker for temporal consistency + ROI Detection & Progressive Matting for fine details
-- **Image-only training, video SOTA** — Strong zero-shot video matting without costly video matting datasets
-- **Diverse prompts** — Masks, points, boxes, text
-- **Open-world generalization** — Humans, animals, anime, translucent objects, rapid-motion scenes
+*   **Graphical User Interface (GUI):** Simple dark-mode interface (customtkinter) — no command line needed.
+*   **Batch Processing:** Process a whole directory of frames, a video file (`.mp4`, `.mov`, `.avi`, `.mkv`, `.webm`), or a single image in one go.
+*   **Automatic Prompting:** The first-frame mask prompt is generated automatically (rembg / u2net) — no clicking points or drawing masks. You can still supply your own mask PNG to override it.
+*   **Temporally Consistent Video Mattes:** Multi-frame inputs use the video predictor, propagating one mask through the whole clip (no per-frame flicker).
+*   **Three Outputs per Frame:** `alpha/` (grayscale matte), `composite/` (foreground over a solid color of your choice), and `transparent/` (RGBA PNG), all keeping the original frame names.
+*   **All Three Model Variants:** Switch between SAM2.1 Tiny, SAM2.1 Base+, and SAM3 from a dropdown — missing checkpoints are downloaded automatically from Hugging Face.
+*   **Live Progress:** Progress bar, frame counter, and a scrolling log; cancel a run at any time.
+*   **Timestamped Output Folders:** Each run saves to `<input>_<timestamp>_matting`, so re-runs never overwrite earlier results.
+*   **Self-Healing Launcher:** `run_matting.bat` rebuilds the venv, reinstalls dependencies, and re-downloads checkpoints if anything is missing.
+*   **Fully Local:** After first-time setup nothing is uploaded anywhere — your frames never leave your machine.
 
-## 📋 TODO
+### Core Features (from the original)
 
-- ✅ Release checkpoints of different variants.
-- ✅ Release inference code and interactive demo.
-- ⬜ Release training code.
+- Generalized image & video matting of open-world targets.
+- High-quality alpha mattes with fine hair/edge detail.
+- Decoupled high-level tracking and dedicated low-level matting.
+- SAM2.1 and SAM3 based variants with mask, point, box, and text prompts.
 
-## 🧠 Checkpoints
-We provide three variants of SAM2Matting based on different VOS trackers.
+## 💻 How to Use (Easy Way)
 
-<table>
-  <thead>
-    <tr>
-      <th>Backbone Tracker</th>
-      <th>Hugging Face</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="vertical-align: middle;">SAM2.1-T</td>
-      <td style="vertical-align: middle;"><a href="https://huggingface.co/FudanCVL/SAM2Matting/blob/main/checkpoints/SAM2Matting-SAM2.1Tiny.pt"><img src="https://img.shields.io/badge/HF-SAM2.1--T-ffd21e?style=flat&logo=huggingface&logoColor=white" style="vertical-align: middle;"></a></td>
-    </tr>
-    <tr>
-      <td style="vertical-align: middle;">SAM2.1-B+</td>
-      <td style="vertical-align: middle;"><a href="https://huggingface.co/FudanCVL/SAM2Matting/blob/main/checkpoints/SAM2Matting-SAM2.1Base%2B.pt"><img src="https://img.shields.io/badge/HF-SAM2.1--B+-ffd21e?style=flat&logo=huggingface&logoColor=white" style="vertical-align: middle;"></a></td>
-    </tr>
-    <tr>
-      <td style="vertical-align: middle;">SAM3</td>
-      <td style="vertical-align: middle;"><a href="https://huggingface.co/FudanCVL/SAM2Matting/blob/main/checkpoints/SAM2Matting-SAM3.pt"><img src="https://img.shields.io/badge/HF-SAM3-ffd21e?style=flat&logo=huggingface&logoColor=white" style="vertical-align: middle;"></a></td>
-    </tr>
-  </tbody>
-</table>
+Requirements: Windows, an NVIDIA GPU (CUDA), [Python 3.10](https://www.python.org/downloads/), and [PowerShell 7](https://github.com/PowerShell/PowerShell).
 
-By default, place all checkpoints under the `checkpoints/` directory.
+1.  Clone this repository:
+    ```bash
+    git clone https://github.com/ZeroHackz/GUI-SAM2Matting.git
+    ```
+2.  Double-click **`run_matting.bat`**. The first run builds the environment (the PyTorch download is ~3 GB) and fetches the default checkpoint, then the GUI opens.
+3.  Click **Folder...** (frame directory) or **File...** (video or image) to pick your input.
+4.  Optionally pick a model variant, composite background color, or output folder.
+5.  Click **Run matting** and watch the log. When it finishes, **Open output folder** takes you straight to the results.
 
-## ⚙️ Installation
-```bash
-# clone the repo and enter directory
-git clone https://github.com/FudanCVL/SAM2Matting.git
-cd SAM2Matting
+## CLI Usage
 
-# create and activate conda environment
-conda create -n sam2matting python=3.10 -y
-conda activate sam2matting
+The same pipeline is available from the command line:
 
-# install required packages
-pip install -r requirements.txt
+```bat
+run_matting.bat <frames-dir | video | image> [--output DIR] [--bg R,G,B] [--mask PNG] [--variant sam2.1tiny|sam2.1base+|sam3]
 ```
 
-## 🚀 Inference
+Examples:
 
-We provide separate inference scripts for **image** and **video** matting (given initial-frame mask), organized by tracker family:
-
-| Task | SAM2 variants | SAM3 variant |
-|------|------------------------------------------|--------------|
-| **Image matting** | `inference_image_sam2.py` | `inference_image_sam3.py` |
-| **Video matting** | `inference_video_sam2.py` | `inference_video_sam3.py` |
-
-For video matting, use `--save_mp4` to save video, and optionally use `--compiled` to enable compilation (first-time may be slow), such as:
-
-```bash
-python inference_video_sam2.py --save_mp4
-python inference_video_sam2.py --save_mp4 --compiled
+```bat
+run_matting.bat C:\clips\dance_frames
+run_matting.bat C:\clips\dance.mp4 --bg 0,255,0 --variant sam2.1tiny
 ```
 
-You can replace the samples with your own image or video.
+The original inference scripts (`inference_image_sam2.py`, `inference_video_sam2.py`, etc.) are untouched and still work as documented in the [original README](SAM2Matting-README.md).
 
+## 📄 License & Credits
 
-## 🎮 Interactive Demo
-SAM2Matting supports interactive prompt types beyond masks, including point, box (SAM2 & SAM3), and text (SAM3), run the code below:
-```bash
-python interactive_sam2.py (point by default)
-python interactive_sam3.py (text by default)
-```
-
-
-## 📚 Acknowledgements & Citation
-
-We are inspired by the following excellent works: [SAM2](https://github.com/facebookresearch/sam2), [SAM3](https://github.com/facebookresearch/sam3), [MatAnyone](https://github.com/pq-yang/MatAnyone), and many other not listed.
-
-If you find SAM2Matting useful in your research, please consider citing:
+All model code, architectures, and checkpoints are the work of the original authors — see [LICENSE](LICENSE) and please cite their paper:
 
 ```bibtex
 @inproceedings{SAM2Matting,
@@ -135,5 +76,5 @@ If you find SAM2Matting useful in your research, please consider citing:
   year={2026}
 }
 ```
-## ⚖️ License
-SAM2Matting is licensed under CC BY-NC-SA 4.0 for non-commercial research use only. For uses beyond this license, please contact henghui.ding[AT]gmail.com.
+
+SAM2Matting is licensed under **CC BY-NC-SA 4.0 for non-commercial research use only** — this fork inherits that license. It only adds the GUI, batch pipeline, and Windows launcher tooling on top.
