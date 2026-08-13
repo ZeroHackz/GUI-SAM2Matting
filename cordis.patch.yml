@@ -1,0 +1,3 @@
+- insert:
+    - id: sam2matting
+      name: '@zerohackz/dsh-sam2matting'

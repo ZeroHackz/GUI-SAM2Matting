@@ -104,6 +104,10 @@ def process_single_video(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Video matting")
+    parser.add_argument("--video_dir", type=str, default="demo/video/frames",
+                        help="Directory of input frames")
+    parser.add_argument("--output_dir", type=str, default="output_video",
+                        help="Directory for output files")
     parser.add_argument("--save_mp4", action="store_false", help="save mp4")
     parser.add_argument("--compiled", action="store_true", help="compile image encoder and alpha predictor")
     parser.add_argument("--prompt_type", choices=["point", "box"], default="point")
@@ -111,8 +115,8 @@ if __name__ == "__main__":
     parser.add_argument("--bbox", type=float, nargs=4, default=[412, 109, 717, 449])
     args = parser.parse_args()
     
-    single_video_dir = "demo/video/frames"
-    output_root = "output_video"
+    single_video_dir = args.video_dir
+    output_root = args.output_dir
     
     predictor = build_predictor(
         model_cfg, checkpoint, device=device, compiled=args.compiled

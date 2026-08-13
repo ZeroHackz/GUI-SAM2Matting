@@ -1,0 +1,27 @@
+{
+  "name": "@zerohackz/dsh-sam2matting",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness plugin exposing GUI-SAM2Matting (SAM2/SAM3 matting) as agent tools",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "cordis.patch.yml"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "sam2",
+    "sam3",
+    "matting",
+    "segmentation",
+    "video"
+  ],
+  "license": "MIT"
+}

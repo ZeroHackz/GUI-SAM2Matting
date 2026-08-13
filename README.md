@@ -75,6 +75,19 @@ run_matting.bat C:\clips\dance.mp4 --bg 0,255,0 --variant sam2.1tiny
 
 The original inference scripts (`inference_image_sam2.py`, `inference_video_sam2.py`, etc.) are untouched and still work as documented in the [original README](SAM2Matting-README.md).
 
+## 🤖 DeepSeek Harness Plugin
+
+This repository is also a **DeepSeek Harness (dsh) plugin bundle** — install it into a dsh profile and an agent can run matting directly through two tools:
+
+*   `sam2matting_batch` — batch-matting of a video, frames directory, or single image (auto rembg prompting, alpha/composite/transparent outputs).
+*   `sam2matting_interactive` — interactive video matting from a point, box, or (SAM3) text prompt.
+
+```sh
+dsh plugin add github:ZeroHackz/GUI-SAM2Matting
+```
+
+Requirements on the machine running dsh: Python 3.10+ with a CUDA PyTorch install (or set `SAM2MATTING_PYTHON` to point at such a Python), and an NVIDIA GPU. Checkpoints download automatically on first use.
+
 ## 📄 License & Credits
 
 All model code, architectures, and checkpoints are the work of the original authors — see [LICENSE](LICENSE) and please cite their paper:
