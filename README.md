@@ -88,6 +88,13 @@ dsh plugin add github:ZeroHackz/GUI-SAM2Matting
 
 Requirements on the machine running dsh: Python 3.10+ with a CUDA PyTorch install (or set `SAM2MATTING_PYTHON` to point at such a Python), and an NVIDIA GPU. Checkpoints download automatically on first use.
 
+### Example prompts for the agent
+
+*   `Matte the subject in E:\clips\dance.mp4 — put the outputs in E:\mattes\dance`
+*   `Batch-mat every video in E:\clips with a green-screen composite background`
+*   `Extract the woman with the red dress from this video using a text prompt` (SAM3 + `sam2matting_interactive`)
+*   `Isolate the foreground from these frame sequences so I can composite them over a new background`
+
 ## 📄 License & Credits
 
 All model code, architectures, and checkpoints are the work of the original authors — see [LICENSE](LICENSE) and please cite their paper:
